@@ -1,0 +1,5 @@
+app/proto/*.js
+typings/**/*
+types/jsonschema.json
+types/main.json
+types/api.ts

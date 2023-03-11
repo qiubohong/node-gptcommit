@@ -1,0 +1,19 @@
+{
+  "include": [
+    "./src/*",
+    "./rollup.config.ts",
+    "./src/*"
+  ],
+  "compilerOptions": {
+    "target": "ES2019",
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "strict": true,
+    "esModuleInterop": true,
+    "noImplicitOverride": true,
+    "noUnusedLocals": true,
+    "useUnknownInCatchVariables": false,
+    "typeRoots": ["./types", "./node_modules/@types"]
+  },
+  "types": ["jest"]
+}

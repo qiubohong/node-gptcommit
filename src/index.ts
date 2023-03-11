@@ -1,4 +1,3 @@
-import Client from './openai/client';
-
-
-export default Client;
+export default {
+    a: 123
+}
