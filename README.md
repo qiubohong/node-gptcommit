@@ -67,7 +67,7 @@ ngptcommit config --set output.lang=en
 |`zh-tw`|繁體中文|
 |`日本`|日本語|
 
-##遇到任何错误？
+## 遇到任何错误？
 
 如果您遇到任何错误或有任何改进建议，请在[issues](https://github.com/qiubohong/node-gptcommit/issues)中提出问题。
 
