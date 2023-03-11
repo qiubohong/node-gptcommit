@@ -1,6 +1,6 @@
 {
   "name": "node-gptcommit",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "利用gpt自动生成git commit信息",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
