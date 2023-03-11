@@ -5,7 +5,7 @@ import { cac } from 'cac';
 import colors from 'picocolors';
 
 import Settings from './settings';
-import ConfigAction from './actions/config'; 
+import ConfigAction from './actions/config';
 import PreviewAction from './actions/preview';
 import Debug from 'debug';
 const debug = Debug('ngptcommit:cli');
@@ -67,14 +67,14 @@ function install(settings: ISettings) {
 function preview(settings: ISettings) {
     cli
         .command('preview', '预览提交信息')
-        .action((options) => {
+        .action(() => {
             debug(colors.green(`开始预览`));
             const previewAction = new PreviewAction(settings);
             previewAction.preview();
         })
 }
 
-; (async () => {
+export default async function run() {
     const settings = new Settings();
     await settings.readConfig();
     // config 配置全局
@@ -82,7 +82,7 @@ function preview(settings: ISettings) {
 
     // install 安装
     install(settings);
-    
+
     // preview 预览
     preview(settings);
 
@@ -90,4 +90,4 @@ function preview(settings: ISettings) {
     cli.version(version)
 
     cli.parse()
-})();
+}
