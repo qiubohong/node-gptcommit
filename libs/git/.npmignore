@@ -1,0 +1,10 @@
+src
+test
+.git
+test.js
+tslint.json
+tsconfig.json
+jest.config.js
+.prettierrc
+.gitignore
+.prettierignore

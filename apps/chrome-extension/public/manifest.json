@@ -1,0 +1,36 @@
+{
+    "name": "ngptcommit",
+    "version": "1.0",
+    "description": "ngptcommit自动生成git commit信息",
+    "manifest_version": 2,
+    "browser_action": {
+        "default_popup": "index.html"
+    },
+    "icons": {
+        "16": "images/favicon-16x16.png",
+        "48": "images/favicon-32x32.png",
+        "64": "images/android-chrome-192x192.png",
+        "128": "images/android-chrome-192x192.png"
+    },
+    "permissions": [
+        "tabs",
+        "storage",
+        "http://*/*",
+        "https://*/*",
+        "activeTab",
+        "contextMenus",
+        "notifications",
+        "webRequest",
+        "webRequestBlocking",
+        "cookies",
+        "unlimitedStorage",
+        "webNavigation",
+        "identity",
+        "identity.email",
+        "identity.read",
+        "identity.write",
+        "identity.launch.webauthn",
+        "identity.launch.webauthn",
+        "identity.manage.accounts"
+    ]
+}

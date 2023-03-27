@@ -7,7 +7,7 @@ export default [
     {
         input: {
             index: 'src/cli.ts',
-            cli: 'src/cli.ts',
+            cli: 'src/index.ts',
         },
         plugins: [
             typescript(), // typescript 转义
