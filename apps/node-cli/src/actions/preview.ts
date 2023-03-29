@@ -47,7 +47,7 @@ class PreviewAction implements IPreviewAction {
 
         let originalMessage = '';
         if (this.allowAmend) {
-            commitMessage.split('\n').map((line) => {
+            commitMessage.split('\n').map((line: string) => {
                 return `# ${line}`
             }).join('\n');
             originalMessage = `### BEGIN GIT COMMIT BEFORE AMEND\n${originalMessage}\n### END GIT COMMIT BEFORE AMEND\n`

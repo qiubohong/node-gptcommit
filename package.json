@@ -1,13 +1,18 @@
 {
-    "name": "node-gptcommit",
-    "version": "1.0.0",
-    "description": "A simple node.js module to commit changes to a GPT partition table",
-    "type": "module",
-    "scripts": {
-        "build": "pnpm -r run build",
-        "dev": "pnpm -r --parallel run dev"
-    },
-    "engines": {
-        "node": "^14.18.0 || >=16.0.0"
-    }
+  "name": "node-gptcommit",
+  "version": "1.0.0",
+  "description": "A simple node.js module to commit changes to a GPT partition table",
+  "type": "module",
+  "scripts": {
+    "build": "nx run-many --target=build",
+    "dev": "nx run-many --target=dev",
+    "test": "nx run-many --target=test"
+  },
+  "engines": {
+    "node": "^14.18.0 || >=16.0.0"
+  },
+  "devDependencies": {
+    "nx": "15.8.9",
+    "@nrwl/nx-cloud": "latest"
+  }
 }

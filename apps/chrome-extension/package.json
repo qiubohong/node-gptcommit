@@ -1,5 +1,5 @@
 {
-  "name": "node-gptcommit-chrome",
+  "name": "@node-gptcommit/chrome-extension",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -9,7 +9,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "vue": "^3.2.47"
+    "vue": "^3.2.47",
+    "@node-gptcommit/summarize": "workplace: *",
+    "@node-gptcommit/git-utils": "workplace: *"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.1.0",

@@ -1,10 +1,8 @@
-import { ISettings } from './types/index';
 import { readFileSync } from 'fs';
 
 import { cac } from 'cac';
 import colors from 'picocolors';
 
-import Settings from './settings';
 import ConfigAction from './actions/config';
 import PreviewAction from './actions/preview';
 import Debug from 'debug';

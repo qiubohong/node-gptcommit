@@ -5,10 +5,7 @@ import commonjs from '@rollup/plugin-commonjs'
 
 export default [
     {
-        input: {
-            index: 'src/cli.ts',
-            cli: 'src/index.ts',
-        },
+        input: 'src/index.ts',
         plugins: [
             typescript(), // typescript 转义
             babel({

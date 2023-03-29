@@ -2,11 +2,9 @@
 import fs from 'fs';
 import colors from 'picocolors';
 import * as dot from 'dot-wild';
+import { ISettings, Settings } from '@node-gptcommit/summarize';
 
-
-import Settings from "../settings";
 import { writeJsonFormat } from "../utils/write";
-import { ISettings } from "../types";
 import Debug from 'debug';
 const debug = Debug('ngptcommit:config');
 
@@ -37,7 +35,7 @@ class ConfigAction implements IConfigAction {
      */
     async get(settings: ISettings, fullKey: string) {
         let cloneSetting = JSON.parse(JSON.stringify(settings));
-        if(dot.has(cloneSetting, fullKey) === false){
+        if (dot.has(cloneSetting, fullKey) === false) {
             console.log(colors.red(`fail get ${fullKey}, ${fullKey} not exist`));
             return;
         }
@@ -73,7 +71,7 @@ class ConfigAction implements IConfigAction {
      */
     async delete(settings: ISettings, fullKey: string, local: boolean) {
         let cloneSetting = JSON.parse(JSON.stringify(settings));
-        if(dot.has(cloneSetting, fullKey) === false){
+        if (dot.has(cloneSetting, fullKey) === false) {
             console.log(colors.red(`fail delete ${fullKey}, ${fullKey} not exist`));
             return;
         }

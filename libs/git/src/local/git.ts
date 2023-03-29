@@ -32,7 +32,7 @@ class GitClient implements IGitClient {
      * 获取文件不同
      * @returns 
      */
-    static async getDiff() {
+    static async getDiff(): Promise<string> {
         const git = GitClient.getInstance().git;
         const args = [
             "--staged",

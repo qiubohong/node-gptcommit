@@ -7,7 +7,7 @@ import ConventionalCommitTemplate from "./prompts/conventional_commit";
 import SummarizeFileDiffTemlate from "./prompts/summarize_file_diff";
 import SummarizeCommitTemplate from "./prompts/summarize_commit";
 import TranslationTemplate from "./prompts/translation";
-import GitClient from './git';
+import { LocalGit } from '@node-gptcommit/git-utils';
 
 export const CONFIG_FILE = 'ngptcommit.json';
 
@@ -108,7 +108,7 @@ class Settings implements ISettings {
      */
     static async getLocalConfigPath(): Promise<string> {
         try {
-            const gitHookDir = await GitClient.getHooksPath();
+            const gitHookDir = await LocalGit.getHooksPath();
             if (fs.existsSync(gitHookDir)) {
                 const configPath = path.join(gitHookDir, CONFIG_FILE);
                 if (!fs.existsSync(configPath)) {

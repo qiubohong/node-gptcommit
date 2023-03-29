@@ -57,7 +57,7 @@ export interface ISettings extends Object {
  */
 export interface IClient {
     completions(prompt: string): Promise<string>;
-    chat(prompt: string): Promise<string>;
+    chatCompletions(prompt: string): Promise<string>;
 }
 
 /**

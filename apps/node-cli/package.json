@@ -1,5 +1,5 @@
 {
-  "name": "node-gptcommit",
+  "name": "@node-gptcommit/cli",
   "version": "0.0.2",
   "description": "利用gpt自动生成git commit信息",
   "main": "dist/index.js",
@@ -57,13 +57,12 @@
     "standard-changelog": "^2.0.27",
     "ts-jest": "^28.0.3",
     "tslib": "^2.2.0",
-    "tslint": "^6.1.3",
-    "tslint-config-prettier": "^1.18.0",
     "typedoc": "^0.23.1",
     "typescript": "^4.7.2"
   },
   "dependencies": {
     "@node-gptcommit/summarize": "workplace: *",
+    "@node-gptcommit/git-utils": "workplace: *",
     "axios": "^0.27.2",
     "cac": "^6.7.14",
     "debug": "^4.3.4",

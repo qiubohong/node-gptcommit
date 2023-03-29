@@ -1,5 +1,4 @@
 import colors from 'picocolors';
-import pLimit from 'p-limit';
 import Progress from 'progress';
 
 import { ISettings, IClient, Language } from './types/index';
@@ -8,9 +7,6 @@ import TemplateMap, { TEMPLATEKEY } from './prompts';
 import Debug from 'debug';
 
 const debug = Debug('ngptcommit:Summarize');
-
-// 限制请求并发数
-const limit = pLimit(1);
 
 export interface ISummarize {
     getCommitMessage(fileDiffs: string[]): Promise<string>;
@@ -41,22 +37,7 @@ class Summarize implements ISummarize {
     }
 
     async getCommitMessage(fileDiffs: string[]) {
-        let count = 0;
-        let now = Date.now();
-        const summaryTasks = fileDiffs.map((fileDiff) => limit(() => this.processFileDiff(fileDiff)).then((result) => {
-            this.progress.tick();
-            console.log('请求次数: ', count++, '，耗时：', Date.now() - now)
-            now = Date.now();
-            if (fileDiffs.length > 3) {
-                return new Promise((resolve) => {
-                    setTimeout(() => {
-                        resolve(result);
-                    }, this.settings.openai.waitTime);
-                });
-            } else {
-                return result;
-            }
-        }));
+        const summaryTasks = fileDiffs.map((fileDiff) => this.processFileDiff(fileDiff));
 
         const summaries = await Promise.all(summaryTasks);
         const summaryPoints = summaries.map((summary: any) => {
@@ -146,6 +127,7 @@ class Summarize implements ISummarize {
     /// https://git-scm.com/docs/git-diff
     async processFileDiff(fileDiff: string): Promise<[string, string]> {
         const fileName = getFileNameFromDiff(fileDiff);
+        console.log('fileName: ', fileName)
         if (!fileName) {
             return [fileName, ''];
         }

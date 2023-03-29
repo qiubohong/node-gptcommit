@@ -1,9 +1,12 @@
 {
   "include": [
-    "./src/*",
-    "./rollup.config.ts"
+    "src/*",
+    "typings/index.d.ts",
+    "rollup.config.ts"
   ],
   "compilerOptions": {
+    "baseUrl": ".",
+    "rootDir": ".",
     "target": "ES2019",
     "module": "ESNext",
     "moduleResolution": "node",
@@ -12,7 +15,9 @@
     "noImplicitOverride": true,
     "noUnusedLocals": true,
     "useUnknownInCatchVariables": false,
-    "typeRoots": ["./types", "./node_modules/@types"]
+    "declaration": true,
+    "declarationDir": "dist"
   },
+  "exclude": ["node_modules"],
   "types": ["jest"]
 }
