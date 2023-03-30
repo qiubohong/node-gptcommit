@@ -1,10 +1,7 @@
+import { LocalGit } from '@node-gptcommit/git-utils';
 
+import { ISettings, IClient, ISummarize, OpenAIClient , Summarize, splitPrefixInclusive } from '@node-gptcommit/summarize';
 import colors from 'picocolors';
-import { IClient, ISettings } from "../types";
-import Client from '../openai';
-import GitClient from '../git';
-import { splitPrefixInclusive } from '../utils/strhelp';
-import Summarize, { ISummarize } from '../summarize';
 
 export interface IPreviewAction {
     preview(settings: ISettings, file: string, line: number, commit: string): Promise<void>;
@@ -19,10 +16,10 @@ class PreviewAction implements IPreviewAction {
             throw new Error(`"🤖 请先配置openai的apiKey"`)
         }
 
-        this.client = Client.getInstance(settings.openai.apiKey, settings.openai.retries);
+        this.client = OpenAIClient.getInstance(settings.openai.apiKey);
         // 探测是否可以访问openai
         try {
-            this.client.chat('Hello world');
+            this.client.chatCompletions('Hello world');
         } catch (err) {
             throw new Error(`"🤖 无法访问openai，请检查网络或者apiKey是否正确"`)
         }
@@ -40,7 +37,7 @@ class PreviewAction implements IPreviewAction {
     async preview() {
         console.log(colors.green(`"🤖 正在向 GPT-3 to 请求总结diff内容..."`));
 
-        const diffOutput = await GitClient.getDiff();
+        const diffOutput = await LocalGit.getDiff();
         const diffArray = splitPrefixInclusive(diffOutput, '\ndiff --git ');
 
         const commitMessage = await this.summarizeClient.getCommitMessage(diffArray);

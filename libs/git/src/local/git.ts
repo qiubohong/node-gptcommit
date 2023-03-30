@@ -1,4 +1,4 @@
-import { simpleGit, SimpleGit } from 'simple-git';
+import { simpleGit as SimpleGitFactory, SimpleGit } from 'simple-git';
 
 export interface IGitClient {
     git: SimpleGit;
@@ -14,7 +14,7 @@ class GitClient implements IGitClient {
             binary: "git",
             maxConcurrentProcesses: 1
         };
-        this.git = simpleGit(options);
+        this.git = SimpleGitFactory(options);
     }
     /**
      * 单例模式，避免重复渲染
@@ -48,7 +48,7 @@ class GitClient implements IGitClient {
             } else {
                 throw new Error("未找到本地配置文件。 请先运行 git init 创建一个存储库。");
             }
-        } catch (e) {
+        } catch (e: any) {
             throw new Error('获取git报错，报错信息：' + e.message);
         }
     }
@@ -69,7 +69,7 @@ class GitClient implements IGitClient {
             } else {
                 throw new Error("未找到本地配置文件。 请先运行 git init 创建一个存储库。");
             }
-        } catch (e) {
+        } catch (e: any) {
             throw new Error('获取git报错，报错信息：' + e.message);
         }
     }

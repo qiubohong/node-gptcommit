@@ -1,0 +1,14 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "composite": false,
+    "noEmit": false,
+    "emitDeclarationOnly": true
+  },
+  "include": [
+    "src/*",
+    "typings/index.d.ts",
+  ],
+  "exclude": ["node_modules"],
+  "types": ["jest"]
+}

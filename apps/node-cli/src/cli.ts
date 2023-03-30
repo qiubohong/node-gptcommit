@@ -6,6 +6,7 @@ import colors from 'picocolors';
 import ConfigAction from './actions/config';
 import PreviewAction from './actions/preview';
 import Debug from 'debug';
+import { ISettings, Settings } from '@node-gptcommit/summarize';
 const debug = Debug('ngptcommit:cli');
 
 const { version } = JSON.parse(

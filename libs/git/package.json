@@ -9,8 +9,9 @@
   "typings": "./dist/typings/index.d.ts",
   "type": "module",
   "scripts": {
-    "build": "rimraf dist && rollup -c rollup.config.ts",
+    "build": "rimraf dist && rollup -c rollup.config.ts && npm run build:defs",
     "dev": "rimraf dist && debug=* rollup -c rollup.config.ts -w ",
+    "build:defs": "tsc -p tsconfig.release.json --outDir dist && cp -r typings dist",
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
   },
   "devDependencies": {
@@ -26,7 +27,7 @@
     "@types/debug": "^4.1.7",
     "@types/ip": "^1.1.0",
     "@types/jest": "^27.5.1",
-    "@types/node": "^15.14.9",
+    "@types/node": "^16",
     "@types/progress": "^2.0.5",
     "babel-jest": "^28.1.0",
     "cz-conventional-changelog": "^3.3.0",

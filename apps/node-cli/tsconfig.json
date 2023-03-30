@@ -7,7 +7,6 @@
     "target": "ES2019",
     "module": "ESNext",
     "moduleResolution": "node",
-    "declarationDir": "dist",
     "strict": true,
     "esModuleInterop": true,
     "noImplicitOverride": true,
