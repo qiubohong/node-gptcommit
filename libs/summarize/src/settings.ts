@@ -29,6 +29,7 @@ class Settings implements ISettings {
     output: OutputSettings;
     allowAmend: boolean;
     fileignore: string[];
+    isBrowser: boolean = false;
 
     constructor() {
         this.modelprovider = ModelProvider.OpenAI; // 默认使用openai

@@ -1,5 +1,3 @@
-import { LocalGit } from '@node-gptcommit/git-utils';
-
 function sendFetch(url: string, method: 'get' | 'post', params: object) {
     return fetch(url);
 }
@@ -13,3 +11,7 @@ chrome.runtime.onMessage.addListener(async (request: any, sender: any, sendRespo
         sendResponse('123');
     }
 });
+
+export {
+    sendFetch
+};

@@ -50,6 +50,7 @@ export interface ISettings extends Object {
     output: OutputSettings, // 输出设置
     allowAmend: boolean, // 是否允许修改提交
     fileignore: string[], // 忽略文件 和 gitignore 类似
+    isBrowser?: boolean, // 是否是浏览器
 }
 
 /**

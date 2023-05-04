@@ -19,7 +19,7 @@ class Summarize implements ISummarize {
     conventionalCommit: boolean; // 是否使用规范commit
     showPerFileSummary: boolean; // 是否显示每个文件的总结
     outputLang: Language; // 输出语言
-    progress: Progress; // 进度条
+    progress?: Progress; // 进度条
     constructor(settings: ISettings, client: IClient) {
         this.client = client;
         this.settings = settings;
@@ -28,12 +28,14 @@ class Summarize implements ISummarize {
         this.showPerFileSummary = settings.output.showPerFileSummary === undefined ? false : !!settings.output.showPerFileSummary;
         this.outputLang = settings.output.lang === undefined ? Language.En : settings.output.lang;
 
-        this.progress = new Progress(' 生成提交信息 [:bar] :percent :etas', {
-            complete: '=',
-            incomplete: ' ',
-            width: 20,
-            total: 100,
-        });
+        if (!settings.isBrowser) {
+            this.progress = new Progress(' 生成提交信息 [:bar] :percent :etas', {
+                complete: '=',
+                incomplete: ' ',
+                width: 20,
+                total: 100,
+            });
+        }
     }
 
     async getCommitMessage(fileDiffs: string[]) {
@@ -59,14 +61,14 @@ class Summarize implements ISummarize {
 
             debug(`前缀: ${commitPrefix}, \n标题: ${title},  \n汇总: ${completion}`);
             message.push(`${title}\n\n${completion}\n\n`);
-            this.progress.tick();
+            this.progress && this.progress.tick();
         } else {
             const [title, completion] = await Promise.all([
                 this.commitTitle(summaryPoints),
                 this.commitSummary(summaryPoints),
             ]);
             message.push(`${title}\n\n${completion}\n\n`);
-            this.progress.tick();
+            this.progress && this.progress.tick();
         }
 
         if (this.showPerFileSummary) {
@@ -74,14 +76,14 @@ class Summarize implements ISummarize {
                 const [fileName, completion] = summary;
                 message.push(`[${fileName}]\n${completion}\n"`);
             })
-            this.progress.tick();
+            this.progress && this.progress.tick();
         }
 
         const commitMessage = message.join('\n');
 
         const translationMessage = await this.commitTranslate(commitMessage);
 
-        this.progress.update(1);
+        this.progress && this.progress.update(1);
         return translationMessage;
     }
 

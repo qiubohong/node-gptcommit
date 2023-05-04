@@ -7,7 +7,7 @@ export function sendFetch(url: string, method: 'get'| 'post',  params: object) {
                 method,
                 params,
             },
-            (response) => {
+            (response: unknown) => {
                 resolve(response)
             },
         )

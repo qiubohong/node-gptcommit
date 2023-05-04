@@ -1,5 +1,5 @@
 import { defineConfig } from 'vite'
-import { viteExternalsPlugin } from 'vite-plugin-externals'
+import legacy from '@vitejs/plugin-legacy'
 import vue from '@vitejs/plugin-vue'
 import path from 'path'
 
@@ -8,12 +8,21 @@ export default defineConfig({
   base: './',
   plugins: [
     vue(),
-    viteExternalsPlugin({
-      vue: 'Vue',
-      'tdesign-vue-next': 'TDesign',
-    })
+    legacy({
+      targets: ['defaults', 'not IE 11'],
+    }),
+    // viteExternalsPlugin({
+    //   vue: 'Vue',
+    //   'tdesign-vue-next': 'TDesign',
+    // })
   ],
+  resolve: {
+    alias: {
+      'child_process': path.resolve(__dirname, 'src/utils/node.ts'),
+    },
+  },
   build: {
+    target: 'es2015',
     rollupOptions: {
       input: {
         index: path.resolve(__dirname, 'index.html'),
