@@ -1,36 +1,54 @@
 {
     "name": "ngptcommit",
     "version": "1.0",
-    "description": "ngptcommit自动生成git commit信息",
-    "manifest_version": 2,
-    "browser_action": {
-        "default_popup": "index.html"
-    },
+    "description": "利用chatgpt总结git merge信息",
+    "manifest_version": 3,
     "icons": {
         "16": "images/favicon-16x16.png",
         "48": "images/favicon-32x32.png",
         "64": "images/android-chrome-192x192.png",
         "128": "images/android-chrome-192x192.png"
     },
+    "action": {
+        "default_popup": "index.html",
+        "default_icon": "images/favicon-32x32.png"
+    },
+    "background": {
+        "service_worker": "background.js"
+    },
+    "content_security_policy":{
+        "extension_pages": "script-src 'self'; object-src 'self'",
+        "sanbox": "sandbox allow-scripts allow-forms allow-popups allow-modals; script-src 'self' 'unsafe-inline'; child-src 'self';"
+    },
+    "web_accessible_resources": [
+        {
+            "resources": [
+                "index.js",
+                "index.css"
+            ],
+            "matches": [
+                "http://*/*",
+                "https://*/*",
+                "<all_urls>"
+            ]
+        }
+    ],
+    "host_permissions": [
+        "http://*/*",
+        "https://*/*",
+        "<all_urls>"
+    ],
     "permissions": [
         "tabs",
         "storage",
-        "http://*/*",
-        "https://*/*",
         "activeTab",
         "contextMenus",
         "notifications",
         "webRequest",
-        "webRequestBlocking",
         "cookies",
         "unlimitedStorage",
         "webNavigation",
         "identity",
-        "identity.email",
-        "identity.read",
-        "identity.write",
-        "identity.launch.webauthn",
-        "identity.launch.webauthn",
-        "identity.manage.accounts"
+        "identity.email"
     ]
 }
