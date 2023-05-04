@@ -220,7 +220,7 @@ async function fetchOpenAIResult(payload, apiKey, videoConfig) {
         // n: 1,
     }
 
-    const openaiApiKey = `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`
+    const openaiApiKey = ``
     const result = await fetchOpenAIResult(openAiPayload, openaiApiKey, videoConfig)
 
     console.log(result)

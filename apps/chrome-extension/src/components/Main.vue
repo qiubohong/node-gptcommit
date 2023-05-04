@@ -51,10 +51,14 @@ const getGitApi = () => {
                         form.gitApi = `https://github.com${url.pathname}.diff`
                     } else if (url.pathname.indexOf('commit') >= 0) {
                         form.gitApi = `https://github.com${url.pathname}/commit/${url.searchParams.get('commit')}.diff`
+                    } else {
+                        form.gitApi = ''
                     }
                 } else {
                     if (url.pathname.indexOf('pulls') >= 0) {
                         form.gitApi = `https://gitee.com${url.pathname}.diff`
+                    } else {
+                        form.gitApi = ''
                     }
                     form.gitWeb = '2'
                 }
@@ -62,6 +66,8 @@ const getGitApi = () => {
                 form.type = '2'
                 if (url.pathname.indexOf('merge_requests') >= 0) {
                     form.gitApi = `${url.href}.diff`
+                } else {
+                    form.gitApi = ''
                 }
             }
         })
